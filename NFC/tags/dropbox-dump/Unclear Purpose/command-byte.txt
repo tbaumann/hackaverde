@@ -1,0 +1,28 @@
+Command byte: Zeile 11, 2. Byte, d.h. 41. Byte ab Beginn
+
+Switch in State 8
+11:01 - 01 - Roast, Grind and Brew (Pouche)     weiter mit State 0x0c
+11:01 - 02 - Roast only                         weiter mit State 0x0c
+		03                                      weiter mit State 0x0c
+		
+11:01 - 04 - Grind only                         weiter mit State 4
+		05 - grind + brew                       weiter mit State 4
+
+11:01 - 06 - Brew only      --> cmd_45f4 1      weiter mit State 1
+		13					--> cmd_45f4 1
+
+		
+		07					--> cmd_45f4 0x0f   weiter mit State 0x10
+		08					--> cmd_45f4 0x1d   weiter mit State 0x10
+		09					--> cmd_45f4 0x10   weiter mit State 0x10
+		0a					--> cmd_45f4 0x2d   weiter mit State 0x10
+		0b					--> cmd_45f4 0x1b   weiter mit State 0x10
+		0c					--> cmd_45f4 0x02   weiter mit State 0x10
+		0d					--> cmd_45f4 0x15   weiter mit State 0x10
+		0e					--> cmd_45f4 0x0a   weiter mit State 0x10
+
+11:01 - 0F - Filter reset (Nutzung set to 0)  cmd_45f4 0     weiter mit State 9
+        10                  --> cmd_45f4 0x2f
+        11 - Filter Nutzung set to 30 (wieder auf Filterwechsel) ??? cmd_45f4 0      weiter mit State 0x0c
+		12 - grind cleaning with spezial cleaning beans
+		13 - maintenance  (descale brewing system)     weiter mit State 2

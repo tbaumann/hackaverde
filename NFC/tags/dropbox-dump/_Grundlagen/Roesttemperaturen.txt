@@ -1,0 +1,12 @@
+Ab Mifare EV1 Block 4 (also dem 17. Byte insgesamt) gibt es für die Röstung 4 Blöcke mit je 5 Bytes, z.B. 
+
+AA B0 64 4B 05
+AA B0 41 46 78
+
+AA BA 5F 5A 05
+AA BA 41 46 3C
+
+Der Röstvorgang scheint sich in 2 Zeitabschnitte zu unterteilen (Block 1/2 und Block 2/3), die jeweils ersten beiden Bytes scheinen Temperaturen in Grad zu sein, jedenfalls stammen sie von den beiden Temperatursensoren (Röstkammer und Windkanal) und werden über eine 5-Punkte-Kennline (Eichkurve) aus den Widerstandsdaten recht aufwändig ermittelt,
+die nächsten beiden Bytes halte ich für Prozentzahlen (die 3. für die Heizung vermute ich und die 4. für den Ventilator), jedenfalls werden die nie größer 100 und 64 ist ja exakt 100. das 5. Byte von Block 2 und 4 sind Zeiten, die Normierung habe ich aber nicht eindeutig bestimmen können. Für Sekunden sind die Werte zu klein, ich hatte aus der Disassemblierung die Vermutung, dass man sie mit 5 multiplizieren muss. Es gibt keine echte Zeitbasis, letztlich werden Schleifendurchläufe gezählt, die gerade bei der Temperaturregelung mal länger und mal kürzer ausfallen können.
+
+Das jeweils 5. Bytes von Block 1 und 3 scheint nicht genutzt zu werden. Mit Block 1 und 3 wird scheinbar aufgeheizt, bis die Temperatur erreicht ist und dann mit Block 2/4 geregelt weitergeheizt.
